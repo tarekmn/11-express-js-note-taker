@@ -18,7 +18,7 @@ res.sendFile(path.join(__dirname, 'public/notes.html')));
 
 //API get route to read db.json file and return all saved notes
 app.get('/api/notes', (req, res) => 
-res.sendFile(path.join(__dirname, './db/db.json'))
+res.sendFile(path.join(__dirname, 'db/db.json'))
 
 
 );
