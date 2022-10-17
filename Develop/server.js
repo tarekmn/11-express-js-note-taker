@@ -23,7 +23,7 @@ app.get('/', (req, res) =>
 res.sendFile(path.join(__dirname, 'public/index.html')));
 
 app.get('/notes', (req, res) => 
-res.sendFile(path.join(__dirname, './public/notes.html')));
+res.sendFile(path.join(__dirname, 'public/notes.html')));
 
 //API get route to read db.json file and return all saved notes
 app.get('/api/notes', (req, res) => {
@@ -31,9 +31,6 @@ app.get('/api/notes', (req, res) => {
   const file = fs.readFileSync(filePath);
   const fileContents = file.toString();
   let jsonResponse = JSON.parse(fileContents);
-
-  console.log(jsonResponse)
-  if (!Array.isArray(jsonResponse)) jsonResponse = [jsonResponse];
   res.json(jsonResponse)
 }
 );
