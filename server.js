@@ -38,19 +38,39 @@ app.get('/api/notes', (req, res) => {
 //* `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
 
 app.post('/api/notes', (req, res) => {
-
+  // const {title, text} = note
 
   const jsonNewNote = JSON.stringify(req.body);
-
   const filename = "./db/db.json";
   const oldFile = fs.readFileSync(filename);
   const oldData = JSON.parse(oldFile);
+  req.body.id = uuid();
   const newData = [...oldData, req.body];
 
   fs.writeFileSync('./db/db.json', JSON.stringify(newData))
 
   res.json(jsonNewNote)
 
+})
+
+
+app.delete('/api/notes/:id', (req, res) => {
+  fs.readFile("./db/db.json", function(err, result) {
+    const oldData = JSON.parse(result);
+    console.log("testing" , oldData)
+
+    const newNotes = [];
+    for (let i = 0; i < oldData.length; i++) {
+      const element = oldData[i];
+
+      if(oldData[i].id != req.params.id){
+        //remove entire object from oldData
+        newNotes.push(oldData[i])
+      }
+      
+    }
+    fs.writeFile("./db/db.json", JSON.stringify(newNotes), (err, result) => {res.json(newNotes)})
+  })
 
 })
 
