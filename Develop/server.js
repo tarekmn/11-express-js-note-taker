@@ -35,9 +35,10 @@ res.json(data)
 
 app.post('/api/notes', (req, res) => {
   
+//using index.js variable
+//  const savenote = saveNote(req.body);
 
- 
-  // const{ title, text } = req.body
+  // attempt 1 hardcoding 
   const newNote = {
     title: 'testing',
     text: '123',
