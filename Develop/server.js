@@ -6,7 +6,7 @@ const fs = require('fs');
 // const index = require('./public/assets/js/index');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 //Invoking app.use() and serve static files from '/Develop'
 
